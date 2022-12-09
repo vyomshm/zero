@@ -94,7 +94,7 @@ class ZeroServer:
     def run(self, cpu_count=None):
         try:
             # utilize all the cores
-            cores = cpu_count if cpu_count is not None else os.cpu_count() / 2
+            cores = int(cpu_count) if cpu_count is not None else int(os.cpu_count() / 2)
 
             # device port is used for non-posix env
             self._device_port = get_next_available_port(6666)
