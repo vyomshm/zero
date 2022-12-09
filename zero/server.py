@@ -91,10 +91,10 @@ class ZeroServer:
         self._rpc_input_type_map[func.__name__] = get_function_input_class(func)
         self._rpc_return_type_map[func.__name__] = get_function_return_class(func)
 
-    def run(self):
+    def run(self, cpu_count=None):
         try:
             # utilize all the cores
-            cores = os.cpu_count()
+            cores = cpu_count if cpu_count is not None else os.cpu_count() / 2
 
             # device port is used for non-posix env
             self._device_port = get_next_available_port(6666)
